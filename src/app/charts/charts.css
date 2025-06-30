@@ -1,0 +1,151 @@
+/* Page Reset & Font */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #fffaf1;
+}
+
+/* Wrapper */
+.dashboard-page {
+  width: 100%;
+  padding: 0;
+}
+
+/* Header */
+.dashboard-header {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #fffaf1;
+  color: #414ea1;
+}
+
+.dashboard-header img {
+  height: 56px;
+  max-width: 100%;
+  margin-bottom: 1rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  margin: 0.25rem 0;
+}
+
+.dashboard-header p {
+  font-size: 1rem;
+  color: #5c5c85;
+  margin: 0.5rem 0 0;
+}
+
+/* Sections */
+.chart-section {
+  padding: 2.5rem 1rem;
+  background: #fffaf1;
+}
+
+.chart-section.alt {
+  background: #f3f1e7;
+}
+
+/* Card */
+.chart-card {
+  background: #ffffff;
+  margin: auto;
+  width: 100%;
+  max-width: 900px;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.chart-card:hover {
+  transform: translateY(-5px);
+}
+
+.chart-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: #414ea1;
+}
+
+/* Chart containers */
+canvas,
+#echart,
+#highchart {
+  width: 100% !important;
+  height: 360px !important;
+  margin-top: 1rem;
+}
+
+/* Responsive: Tablet/Desktop */
+@media (min-width: 768px) {
+  .dashboard-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .dashboard-header p {
+    font-size: 1.1rem;
+  }
+
+  .chart-card h2 {
+    font-size: 1.5rem;
+  }
+
+  canvas,
+  #echart,
+  #highchart {
+    height: 400px !important;
+  }
+}
+
+/* Responsive: Small Phones (<480px) */
+@media (max-width: 480px) {
+  .dashboard-header img {
+    height: 44px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .dashboard-header p {
+    font-size: 0.9rem;
+  }
+
+  .chart-card {
+    padding: 1rem;
+  }
+
+  .chart-card h2 {
+    font-size: 1rem;
+  }
+
+  canvas,
+  #echart,
+  #highchart {
+    height: 260px !important;
+  }
+}
+
+/* Responsive: Ultra-small screens (<400px) */
+@media (max-width: 400px) {
+  .dashboard-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .chart-card {
+    padding: 0.75rem;
+    border-radius: 14px;
+  }
+
+  .chart-card h2 {
+    font-size: 0.95rem;
+  }
+
+  canvas,
+  #echart,
+  #highchart {
+    height: 220px !important;
+  }
+}
