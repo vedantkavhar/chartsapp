@@ -20,15 +20,21 @@ export class Charts implements AfterViewInit {
   labels: string[] = [];
   constructor(private dataService: DataService) {
     // Fetch data from the service
-    this.data = this.dataService.data.values;
-    this.labels=this.dataService.data.labels;
+    // this.data = this.dataService.data.values;
+    // this.labels=this.dataService.data.labels;
   }
 
   // Initialize Chart.js
   ngAfterViewInit() {
-    this.initChartJS();
-    this.initECharts();
-    this.initHighCharts();
+
+    this.dataService.getChartData().subscribe((res) => {
+      this.data = res.values;
+      this.labels = res.labels;
+      // console.log(this.data, this.labels);
+      this.initChartJS();
+      this.initECharts();
+      this.initHighCharts();
+    });
   }
 
   // initChart(){
@@ -46,7 +52,7 @@ export class Charts implements AfterViewInit {
         labels: this.labels,
         datasets: [
           {
-            label: 'Fruits count',
+            label: 'product count',
             data: this.data,
             borderWidth: 1,
             backgroundColor: [
@@ -74,7 +80,7 @@ export class Charts implements AfterViewInit {
           },
           title: {
             display: true,
-            text: 'Fruit Consumption',
+            text: 'Product Consumption',
             font: {
               size: 16,
             },
@@ -98,11 +104,15 @@ export class Charts implements AfterViewInit {
           x: {
             title: {
               display: true,
-              text: 'Fruits',
+              text: 'products',
               font: {
                 size: 16,
               },
               color: '#333333',
+            },
+            ticks: {
+              maxRotation: 45, // Rotate x-axis labels
+              minRotation: 45, // Rotate x-axis labels
             },
           },
         },
@@ -120,26 +130,27 @@ export class Charts implements AfterViewInit {
     // Specify the configuration items and data for the chart
     const option = {
       title: {
-        text: 'Fruit Consumption',
+        text: 'Product Consumption',
         left: 'center',
         top: 10,
         textStyle: { fontSize: 22, fontWeight: 700, color: '#23263b' }
       },
       tooltip: { trigger: 'axis' },
       legend: {
-        data: ['Fruits Count'],
+        data: ['product Count'],
         top: 40,
         left: 'center',
         textStyle: { fontSize: 16, color: '#23263b' }
       },
-      grid: { left: 50, right: 30, bottom: 50, top: 80 },
+
+      grid: { left: 50, right: 30, bottom: 100, top: 80 },
       xAxis: {
         data: this.labels,
-        name: 'Fruits',
+        name: 'product',
         nameLocation: 'middle',
-        nameGap: 35,
+        nameGap: 50,
         nameTextStyle: { fontSize: 16, color: '#23263b' },
-        axisLabel: { interval: 0, rotate: 0, fontSize: 14, color: '#23263b' }
+        axisLabel: { interval: 0, rotate: 45, fontSize: 10, color: '#23263b' },
       },
       yAxis: {
         name: 'Quantity',
@@ -147,7 +158,7 @@ export class Charts implements AfterViewInit {
         axisLabel: { color: '#23263b' }
       },
       series: [{
-        name: 'Fruits Count',
+        name: 'prodcut Count',
         type: 'bar',
         data: this.data,
         itemStyle: {
@@ -173,13 +184,13 @@ export class Charts implements AfterViewInit {
   initHighCharts() {
     Highcharts.chart('highchart', {
       chart: { type: 'column' },
-      title: { text: 'Fruit Consumption' },
+      title: { text: 'Product Consumption' },
       xAxis: {
         categories: this.labels,
-        title: { text: 'Fruits', style: { fontSize: '16px' } },
+        title: { text: 'product', style: { fontSize: '16px' } },
         labels: { 
           style: { fontSize: '14px' },
-          rotation:0
+          rotation:-45
         },
       },
       yAxis: {
@@ -190,7 +201,7 @@ export class Charts implements AfterViewInit {
         {
           //i wan tto have this serires name writtern on top
           type: 'column',
-          name: 'Fruit Count',
+          name: 'Product Count',
           data: this.data,
         },
       ],

@@ -1,37 +1,63 @@
 <div class="dashboard-page">
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" id="home">
     <div class="hero-blob"></div>
     <div class="hero-content">
       <img src="https://img.icons8.com/color/96/combo-chart.png" alt="Chart Icon" />
-      <h1>Charts Dashboard</h1>
-      <p>Interactive charts with Chart.js, ECharts & Highcharts</p>
+      <h1>
+        Visualize Data Effortlessly
+        <span class="highlight">with Chartviz</span>
+      </h1>
+      <p>
+        Create beautiful, interactive charts in seconds.<br>
+        Powered by Chart.js, ECharts, and Highcharts.
+      </p>
+      <a href="#charts" class="hero-btn">
+        Explore Charts
+        <span class="cta-arrow">→</span>
+      </a>
     </div>
   </section>
 
-  <!-- Chart.js Card -->
-  <section class="chart-section">
+  <!-- Chart Section -->
+  <section class="chart-section" id="charts">
     <div class="chart-card glass">
-      <h2> Chart.js</h2>
+      <h2>Chart.js</h2>
       <canvas id="chartjs"></canvas>
     </div>
   </section>
-
-  <!-- ECharts Card -->
   <section class="chart-section alt">
     <div class="chart-card glass">
-      <h2> ECharts</h2>
+      <h2>ECharts</h2>
       <div id="echart"></div>
     </div>
   </section>
-
-  <!-- Highcharts Card -->
   <section class="chart-section">
     <div class="chart-card glass">
-      <h2> Highcharts</h2>
+      <h2>Highcharts</h2>
       <div id="highchart"></div>
     </div>
   </section>
 
+  <!-- About Section -->
+  <section class="chart-section alt" id="about">
+    <div class="chart-card glass about-card">
+      <img src="https://img.icons8.com/color/64/analytics.png" alt="About Icon" class="about-icon" />
+      <h2>About <span class="highlight">Chartviz</span></h2>
+      <p>
+        <strong>Chartviz</strong> is a modern Angular dashboard that demonstrates how to integrate and compare Chart.js, ECharts, and Highcharts.<br>
+        Built for interactive data exploration and beautiful charting experiences.
+      </p>
+      <ul class="about-list">
+        <li><span class="about-list-icon">📊</span> Multiple chart libraries in one app</li>
+        <li><span class="about-list-icon">⚡</span> Responsive and clean UI</li>
+        <li><span class="about-list-icon">🛠️</span> Easily extendable and customizable</li>
+      </ul>
+      <div class="about-divider"></div>
+      <p class="about-cta">Ready to visualize your data? <a href="#charts" class="about-link">Explore Charts →</a></p>
+    </div>
+  </section>
+
 </div>
+<!-- working  -->
