@@ -31,6 +31,12 @@ export class Charts implements AfterViewInit {
     this.initHighCharts();
   }
 
+  // initChart(){
+  //   this.initChartJS();
+  //   this.initECharts();
+  //   this.initHighCharts();
+  // }
+
   // Initialize Chartjs
   initChartJS() {
     const ctx = document.getElementById('chartjs') as HTMLCanvasElement;

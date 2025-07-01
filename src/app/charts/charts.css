@@ -1,151 +1,120 @@
-/* Page Reset & Font */
+/* Reset & Typography */
+
+
 body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: #fffaf1;
+    margin: 0;
+    /* font-family: 'Inter', sans-serif; */
+    font-family: "Poiret One", sans-serif;
+    background-color: #fffaf1;
+    color: #1a1a1a;
 }
 
-/* Wrapper */
-.dashboard-page {
-  width: 100%;
-  padding: 0;
+/* Hero Section */
+.hero {
+    position: relative;
+    padding: 5rem 2rem 3rem;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(to right, #e5e5f7, #fffaf1);
 }
 
-/* Header */
-.dashboard-header {
-  text-align: center;
-  padding: 2rem 1rem;
-  background: #fffaf1;
-  color: #414ea1;
+.hero-blob {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle at 30% 30%, #414ea1 0%, transparent 70%);
+    filter: blur(120px);
+    z-index: 0;
+    top: -400px;
+    left: -400px;
 }
 
-.dashboard-header img {
-  height: 56px;
-  max-width: 100%;
-  margin-bottom: 1rem;
+.hero-content {
+    position: relative;
+    z-index: 1;
 }
 
-.dashboard-header h1 {
-  font-size: 2rem;
-  margin: 0.25rem 0;
+.hero-content img {
+    height: 64px;
+    margin-bottom: 1rem;
 }
 
-.dashboard-header p {
-  font-size: 1rem;
-  color: #5c5c85;
-  margin: 0.5rem 0 0;
+.hero-content h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin: 0;
+    color: #414ea1;
 }
 
-/* Sections */
+.hero-content p {
+    font-size: 1.2rem;
+    color: #5a5a7a;
+    margin-top: 0.5rem;
+}
+
+/* Chart Section */
 .chart-section {
-  padding: 2.5rem 1rem;
-  background: #fffaf1;
+    padding: 3rem 1.5rem;
+    display: flex;
+    justify-content: center;
+    background: #fffaf1;
 }
 
 .chart-section.alt {
-  background: #f3f1e7;
+    background: #f5f5ff;
 }
 
-/* Card */
+/* Glass Card */
 .chart-card {
-  background: #ffffff;
-  margin: auto;
-  width: 100%;
-  max-width: 900px;
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
-  text-align: center;
+    width: 100%;
+    max-width: 900px;
+    padding: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease;
 }
 
 .chart-card:hover {
-  transform: translateY(-5px);
+    transform: translateY(-5px);
 }
 
 .chart-card h2 {
-  font-size: 1.3rem;
-  margin-bottom: 1.5rem;
-  color: #414ea1;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: #414ea1;
 }
 
-/* Chart containers */
+/* Chart Containers */
 canvas,
 #echart,
 #highchart {
-  width: 100% !important;
-  height: 360px !important;
-  margin-top: 1rem;
-}
-
-/* Responsive: Tablet/Desktop */
-@media (min-width: 768px) {
-  .dashboard-header h1 {
-    font-size: 2.5rem;
-  }
-
-  .dashboard-header p {
-    font-size: 1.1rem;
-  }
-
-  .chart-card h2 {
-    font-size: 1.5rem;
-  }
-
-  canvas,
-  #echart,
-  #highchart {
+    width: 100% !important;
     height: 400px !important;
-  }
+    border-radius: 12px;
+    background: white;
+    padding: 0.5rem;
 }
 
-/* Responsive: Small Phones (<480px) */
-@media (max-width: 480px) {
-  .dashboard-header img {
-    height: 44px;
-  }
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
 
-  .dashboard-header h1 {
-    font-size: 1.5rem;
-  }
+    .chart-card {
+        padding: 1.5rem;
+    }
 
-  .dashboard-header p {
-    font-size: 0.9rem;
-  }
+    .chart-card h2 {
+        font-size: 1.3rem;
+    }
 
-  .chart-card {
-    padding: 1rem;
-  }
-
-  .chart-card h2 {
-    font-size: 1rem;
-  }
-
-  canvas,
-  #echart,
-  #highchart {
-    height: 260px !important;
-  }
-}
-
-/* Responsive: Ultra-small screens (<400px) */
-@media (max-width: 400px) {
-  .dashboard-header h1 {
-    font-size: 1.25rem;
-  }
-
-  .chart-card {
-    padding: 0.75rem;
-    border-radius: 14px;
-  }
-
-  .chart-card h2 {
-    font-size: 0.95rem;
-  }
-
-  canvas,
-  #echart,
-  #highchart {
-    height: 220px !important;
-  }
+    canvas,
+    #echart,
+    #highchart {
+        height: 280px !important;
+    }
 }
