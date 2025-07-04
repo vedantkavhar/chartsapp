@@ -16,8 +16,10 @@ export class Charts implements AfterViewInit {
   //   values: [10, 20, 50, 40, 30],
   // };
 
-  data:number[]=[];
+  data: number[] = [];
   labels: string[] = [];
+
+  
   constructor(private dataService: DataService) {
     // Fetch data from the service
     // this.data = this.dataService.data.values;
@@ -26,11 +28,11 @@ export class Charts implements AfterViewInit {
 
   // Initialize Chart.js
   ngAfterViewInit() {
-
-    this.dataService.getChartData().subscribe((res) => {
+    this.dataService.getChartData().subscribe(
+      (res) => {
       this.data = res.values;
       this.labels = res.labels;
-      // console.log(this.data, this.labels);
+      console.log(this.data, this.labels);
       this.initChartJS();
       this.initECharts();
       this.initHighCharts();
@@ -46,6 +48,7 @@ export class Charts implements AfterViewInit {
   // Initialize Chartjs
   initChartJS() {
     const ctx = document.getElementById('chartjs') as HTMLCanvasElement;
+    if (!ctx) return; // Ensure the canvas element exists
     new Chart(ctx, {
       type: 'bar',
       data: {
@@ -126,55 +129,65 @@ export class Charts implements AfterViewInit {
     const myChart = echarts.init(
       document.getElementById('echart') as HTMLDivElement
     );
-
+    const colors = [
+      'rgba(255, 99, 132, 0.7)',
+      'rgba(54, 162, 235, 0.7)',
+      'rgba(255, 206, 86, 0.7)',
+      'rgba(12, 255, 255, 0.7)',
+      'rgba(153, 102, 255, 0.7)',
+    ];
     // Specify the configuration items and data for the chart
     const option = {
       title: {
         text: 'Product Consumption',
         left: 'center',
         top: 10,
-        textStyle: { fontSize: 22, fontWeight: 700, color: '#23263b' }
+        textStyle: { fontSize: 22, fontWeight: 700, color: '#23263b' },
       },
       tooltip: { trigger: 'axis' },
       legend: {
         data: ['product Count'],
         top: 40,
         left: 'center',
-        textStyle: { fontSize: 16, color: '#23263b' }
+        textStyle: { fontSize: 16, color: '#23263b' },
       },
 
-      grid: { left: 50, right: 30, bottom: 100, top: 80 },
+      grid: { left: 50, right: 30, bottom: 140, top: 80 },
       xAxis: {
         data: this.labels,
-        name: 'product',
+        name: 'products',
         nameLocation: 'middle',
-        nameGap: 50,
+        nameGap: 10,
         nameTextStyle: { fontSize: 16, color: '#23263b' },
         axisLabel: { interval: 0, rotate: 45, fontSize: 10, color: '#23263b' },
       },
       yAxis: {
         name: 'Quantity',
         nameTextStyle: { fontSize: 16, color: '#23263b' },
-        axisLabel: { color: '#23263b' }
+        axisLabel: { color: '#23263b' },
       },
-      series: [{
-        name: 'prodcut Count',
-        type: 'bar',
-        data: this.data,
-        itemStyle: {
-          borderRadius: [12, 12, 0, 0],
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: '#42a5f5' },
-            { offset: 1, color: '#1976d2' }
-          ])
+      series: [
+        {
+          name: 'prodcut Count',
+          type: 'bar',
+          data: this.data,
+          itemStyle: {
+            borderRadius: [12, 12, 0, 0],
+            color: (params: any) => colors[params.dataIndex % colors.length],
+
+            // color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            //   { offset: 0, color: '#42a5f5' },
+            //   { offset: 1, color: '#1976d2' },
+            // ]),
+          },
+          label: {
+            show: true,
+            position: 'top',
+            fontSize: 14,
+            color: '#23263b',
+          },
         },
-        label: {
-          show: true,
-          position: 'top',
-          fontSize: 14,
-          color: '#23263b'
-        }
-      }]
+      ],
     };
 
     // Display the chart using the configuration items and data just specified.
@@ -185,15 +198,27 @@ export class Charts implements AfterViewInit {
     Highcharts.chart('highchart', {
       chart: { type: 'column' },
       title: { text: 'Product Consumption' },
+      subtitle: {
+        text: 'product count',
+        style: { fontSize: '16px', color: '#414ea1' },
+      },
+      colors: [
+        'rgba(255, 99, 132, 0.7)',
+        'rgba(54, 162, 235, 0.7)',
+        'rgba(255, 206, 86, 0.7)',
+        'rgba(12, 255, 255, 0.7)',
+        'rgba(153, 102, 255, 0.7)',
+      ],
       xAxis: {
         categories: this.labels,
-        title: { text: 'product', style: { fontSize: '16px' } },
-        labels: { 
+        title: { text: 'products', style: { fontSize: '16px' } },
+        labels: {
           style: { fontSize: '14px' },
-          rotation:-45
+          rotation: -45,
         },
       },
       yAxis: {
+        // max: Math.max(...this.data) + 1, // Set max value for y-axis
         title: { text: 'Quantity', style: { fontSize: '16px' } },
         labels: { style: { fontSize: '14px' } },
       },
@@ -203,6 +228,7 @@ export class Charts implements AfterViewInit {
           type: 'column',
           name: 'Product Count',
           data: this.data,
+          colorByPoint: true,
         },
       ],
       plotOptions: {

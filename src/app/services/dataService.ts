@@ -25,5 +25,4 @@ export class DataService {
         })
       );
   }
-    // Get top 6 product prices from DummyJSON
 }
